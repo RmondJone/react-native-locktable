@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_host">接口地址</string>
+    <string name="reload_js">重载JS</string>
+    <string name="rn_host">JS地址</string>
+    <string name="go_setting">APP管理页面</string>
+    <string name="wifi_setting">设置代理</string>
+    <string name="rn_options">RN选项</string>
+    <string name="rn_debug">RN调试</string>
+    <string name="router_test">路由系统</string>
+
+</resources>

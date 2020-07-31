@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">floatwindow</string>
+    <string name="select_node_host">请选择后台接口地址</string>
+    <string name="select_rn_host">请选择RN代码更新地址</string>
+</resources>

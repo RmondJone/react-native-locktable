@@ -16,13 +16,14 @@
     "checkJs": false,
     "outDir": "./dist",
     "rootDir": "./src",
-    "declaration": true
+    "declaration": true,
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",
     "babel.config.js",
     "metro.config.js",
     "index.js",
-    "App.tsx"
+    "app/App.tsx"
   ]
 }

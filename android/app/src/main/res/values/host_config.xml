@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="api_debug_host_list">
+        <item>张文心|http://192.168.27.18:8800</item>
+        <item>金文武|http://192.168.27.21:8800</item>
+        <item>郭翰林|http://192.168.27.22:8800</item>
+        <item>郭翰林(MAC)|http://192.168.27.56:8800</item>
+        <item>金建新|http://192.168.27.123:8800</item>
+        <item>localhost|http://localhost:8800</item>
+        <item>陈猛|http://192.168.56.64:8800</item>
+        <item>顾胜男|http://192.168.27.14:8800</item>
+        <item>180测试环境|http://192.168.27.180:8888</item>
+        <item>Node正式|https://app.91xinbei.cn</item>
+    </string-array>
+    <string-array name="rn_code_host_list">
+        <item>金建新223|192.168.27.123:8081</item>
+        <item>金建新222|192.168.27.222:8081</item>
+        <item>李昻|192.168.27.103:8081</item>
+        <item>张文心|192.168.27.18:8081</item>
+        <item>金文武|192.168.27.21:8081</item>
+        <item>郭翰林|192.168.27.22:8081</item>
+        <item>郭翰林(MAC)|192.168.27.56:8081</item>
+        <item>杨小云|192.168.27.76:8081</item>
+        <item>localhost|localhost:8081</item>
+    </string-array>
+</resources>
