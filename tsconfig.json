@@ -1,7 +1,8 @@
 {
+  "include": ["src/*"],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "ESNext",
     "jsx": "react-native",
     "strict": false,
     "noImplicitAny": false,
@@ -14,7 +15,7 @@
     "isolatedModules": true,
     "allowJs": true,
     "checkJs": false,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "rootDir": "./src",
     "declaration": true,
     "resolveJsonModule": true

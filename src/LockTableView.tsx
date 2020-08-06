@@ -1,5 +1,5 @@
-import {StyleSheet, View, Text, Platform, FlatList, ScrollView} from 'react-native';
-import React, {useEffect, useRef} from 'react';
+import {FlatList, Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useRef} from 'react';
 
 interface Props {
   //标题数据
