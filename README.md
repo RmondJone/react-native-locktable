@@ -1,5 +1,7 @@
 ### 功能介绍
-一个React Native可以锁定双向的表格控件
+一个可以锁定双向的React Native表格控件
+
+![image](https://github.com/RmondJone/react-native-locktable/blob/master/snapshot.gif)
 ### 使用方法
 ```js
   npm install react-native-locktable 或者 yarn add react-native-locktable
