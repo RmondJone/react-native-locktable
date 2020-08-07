@@ -1,6 +1,6 @@
 ### 功能介绍
 
-一个可以锁定双向的 React Native 表格控件
+一个可以锁定双向的 React Native 表格控件<br>
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5f2db5e7687f40b19adef4caa302a305~tplv-k3u1fbpfcp-zoom-1.image)
 
 ### 使用方法
