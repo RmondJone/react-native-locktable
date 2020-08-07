@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 // @ts-ignore
 import DataJson from '../app.json';
 
@@ -22,7 +22,7 @@ function App(props) {
   let data = plainToClass(OilPrice, DataJson);
   return (
     <View style={{flex: 1}}>
-      <LockTableView tableData={data} titleData={titleData} />
+      <LockTableView tableData={data} titleData={titleData} isLockTable={true} />
     </View>
   );
 }

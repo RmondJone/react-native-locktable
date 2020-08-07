@@ -2,6 +2,8 @@ import {FlatList, Platform, ScrollView, StyleSheet, Text, View} from 'react-nati
 import React, {useRef} from 'react';
 
 interface Props {
+  //是否开启锁定
+  isLockTable?: boolean;
   //标题数据
   titleData: string[];
   //数据源
@@ -45,7 +47,7 @@ export default function LockTableView(props: Props) {
   });
   props.tableData.map((item, i) => {
     Object.values(item).map((value, j) => {
-      if (j == 0) {
+      if (j == 0 && props.isLockTable) {
         firstColumnData.push(value);
       }
       if (columnMaxWidth[j] < value.length * scale) {
@@ -56,8 +58,10 @@ export default function LockTableView(props: Props) {
         }
       }
     });
-    //删除对象第一个属性数据
-    delete item[Object.keys(item)[0]];
+    if (props.isLockTable) {
+      //删除对象第一个属性数据
+      delete item[Object.keys(item)[0]];
+    }
   });
 
   /**
@@ -73,12 +77,13 @@ export default function LockTableView(props: Props) {
           style={{
             fontSize: props.textSize,
             color: props.textColor,
-            width: columnMaxWidth[i + 1],
+            width: props.isLockTable ? columnMaxWidth[i + 1] + props.textSize : columnMaxWidth[i] + props.textSize,
             height: props.cellHeight,
             textAlign: 'center',
             textAlignVertical: 'center',
             borderWidth: border_width,
             borderColor: '#e7e7e7',
+            backgroundColor: !props.isLockTable && i === 0 ? props.firstColumnBackGroundColor : 'transparent',
           }}>
           {item}
         </Text>,
@@ -102,12 +107,13 @@ export default function LockTableView(props: Props) {
           style={{
             fontSize: props.textSize,
             color: props.textColor,
-            width: columnMaxWidth[i + 1],
+            width: props.isLockTable ? columnMaxWidth[i + 1] + props.textSize : columnMaxWidth[i] + props.textSize,
             height: props.cellHeight,
             textAlign: 'center',
             textAlignVertical: 'center',
             borderWidth: border_width,
             borderColor: '#e7e7e7',
+            backgroundColor: props.isLockTable ? 'transparent' : props.firstRowBackGroundColor,
           }}>
           {item}
         </Text>,
@@ -195,56 +201,94 @@ export default function LockTableView(props: Props) {
   let lockList = useRef(null);
   let headScrollView = useRef(null);
 
-  return (
-    <View style={{flex: 1}}>
-      {renderHeaderView()}
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        {/*锁定列*/}
-        <View style={{width: columnMaxWidth[0] + props.textSize}}>
-          <FlatList
-            ref={lockList}
-            contentContainerStyle={{
-              backgroundColor: props.firstColumnBackGroundColor,
+  /**
+   * 注释: 绘制锁定表格
+   * 时间: 2020/8/7 0007 20:29
+   * @author 郭翰林
+   */
+  function renderLockTable() {
+    return (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        {renderHeaderView()}
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          {/*锁定列*/}
+          <View style={{width: columnMaxWidth[0] + props.textSize}}>
+            <FlatList
+              ref={lockList}
+              contentContainerStyle={{
+                backgroundColor: props.firstColumnBackGroundColor,
+              }}
+              scrollEnabled={false}
+              data={firstColumnData}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              renderItem={rowData => {
+                return renderFirstCell(rowData.item, rowData.index);
+              }}
+            />
+          </View>
+          {/*滚动数据*/}
+          <ScrollView
+            style={{borderRightWidth: border_width, borderColor: '#e7e7e7'}}
+            horizontal={true}
+            bounces={false}
+            onScroll={event => {
+              headScrollView.current.scrollTo({x: event.nativeEvent.contentOffset.x});
             }}
-            scrollEnabled={false}
-            data={firstColumnData}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            renderItem={rowData => {
-              return renderFirstCell(rowData.item, rowData.index);
-            }}
-          />
+            keyboardShouldPersistTaps={'handled'}>
+            <FlatList
+              data={props.tableData}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              onScroll={event => {
+                lockList.current.scrollToOffset({
+                  animated: false,
+                  offset: event.nativeEvent.contentOffset.y,
+                });
+              }}
+              renderItem={rowData => {
+                return renderRowCell(rowData.item, rowData.index);
+              }}
+            />
+          </ScrollView>
         </View>
-        {/*滚动数据*/}
+      </View>
+    );
+  }
+
+  /**
+   * 注释: 绘制不锁定表格
+   * 时间: 2020/8/7 0007 20:54
+   * @author 郭翰林
+   * @returns {any}
+   */
+  function renderUnLockTable() {
+    return (
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
         <ScrollView
           style={{borderRightWidth: border_width, borderColor: '#e7e7e7'}}
           horizontal={true}
           bounces={false}
-          onScroll={event => {
-            headScrollView.current.scrollTo({x: event.nativeEvent.contentOffset.x});
-          }}
           keyboardShouldPersistTaps={'handled'}>
           <FlatList
             data={props.tableData}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
-            onScroll={event => {
-              lockList.current.scrollToOffset({
-                animated: false,
-                offset: event.nativeEvent.contentOffset.y,
-              });
-            }}
+            ListHeaderComponent={renderFirstRowCell(props.titleData)}
             renderItem={rowData => {
               return renderRowCell(rowData.item, rowData.index);
             }}
           />
         </ScrollView>
       </View>
-    </View>
-  );
+    );
+  }
+
+  return props.isLockTable ? renderLockTable() : renderUnLockTable();
 }
 
 LockTableView.defaultProps = {
+  isLockTable: false,
   textSize: 15,
   textColor: '#666',
   tableHeadTextColor: '#666',

@@ -1,18 +1,30 @@
 ### 功能介绍
-一个可以锁定双向的React Native表格控件
 
-![image](https://github.com/RmondJone/react-native-locktable/blob/master/snapshot.gif)
+一个可以锁定双向的 React Native 表格控件
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5f2db5e7687f40b19adef4caa302a305~tplv-k3u1fbpfcp-zoom-1.image)
+
 ### 使用方法
-```js
-  npm install react-native-locktable 或者 yarn add react-native-locktable
-``` 
 
 ```js
-  import LockTableView from "react-native-locktable";
-``` 
-### Api介绍
+npm install react-native-locktable
+```
+
+或
+
+```js
+yarn add react-native-locktable
+```
+
+```js
+import LockTableView from 'react-native-locktable';
+```
+
+### Api 介绍
+
 ```js
 interface Props {
+  //是否开启锁定
+  isLockTable?: boolean;
   //标题数据
   titleData: string[];
   //数据源
