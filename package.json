@@ -1,6 +1,6 @@
 {
   "name": "react-native-locktable",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Tables that can be locked in both directions on react native",
   "author": {
     "name": "Guo Hanlin",
@@ -43,7 +43,8 @@
   ],
   "files": [
     "lib",
-    "LICENSE"
+    "LICENSE",
+    "README.md"
   ],
   "repository": {
     "type": "git",

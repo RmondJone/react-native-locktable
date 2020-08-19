@@ -106,7 +106,7 @@ export default function LockTableView(props: Props) {
         <Text
           style={{
             fontSize: props.textSize,
-            color: props.textColor,
+            color: props.tableHeadTextColor,
             width: props.isLockTable ? columnMaxWidth[i + 1] + props.textSize : columnMaxWidth[i] + props.textSize,
             height: props.cellHeight,
             textAlign: 'center',
@@ -144,7 +144,7 @@ export default function LockTableView(props: Props) {
           <Text
             style={{
               fontSize: props.textSize,
-              color: props.textColor,
+              color: props.tableHeadTextColor,
               textAlign: 'center',
               textAlignVertical: 'center',
             }}>
